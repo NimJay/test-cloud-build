@@ -1,0 +1,6 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build:1.0', '.']
+  dir: 'nodejs-app'
+images:
+- 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build:1.0'
