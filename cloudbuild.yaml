@@ -1,18 +1,39 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-1:1.0', '.']
+  args: 
+    - 'build'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-1:1.0'
+    - '-t'
+    - 'gcr.io/nim-onboarding/test-cloud-build/test-image-1:1.0'
+    - '.'
   dir: 'website-1'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-2:1.0', '.']
+  args: 
+    - 'build'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-2:1.0'
+    - '-t'
+    - 'gcr.io/nim-onboarding/test-cloud-build/test-image-2:1.0'
+    - '.'
   dir: 'website-2'
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-3:1.0', '.']
+  args: 
+    - 'build'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-3:1.0'
+    - '-t'
+    - 'gcr.io/nim-onboarding/test-cloud-build/test-image-3:1.0'
+    - '.'
   dir: 'website-3'
 
 images:
 - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-1:1.0'
+- 'gcr.io/nim-onboarding/test-cloud-build/test-image-1:1.0'
 - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-2:1.0'
+- 'gcr.io/nim-onboarding/test-cloud-build/test-image-2:1.0'
 - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-3:1.0'
+- 'gcr.io/nim-onboarding/test-cloud-build/test-image-3:1.0'
