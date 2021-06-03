@@ -22,7 +22,7 @@ steps:
 - name: 'bash'
   args:
     - '-c'
-    - sed 's/version 1/version 2/' website-3/index.html > /workspace/index.html
+    - 'sed "s/version 1/version 2/" website-3/index.html > /workspace/index.html'
 
 # Build "version 2" from /workspace.
 - name: 'gcr.io/cloud-builders/docker'
