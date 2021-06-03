@@ -1,5 +1,6 @@
 steps:
 
+# Build "version 1" of website-3.
 - name: 'gcr.io/cloud-builders/docker'
   args: 
     - 'build'
@@ -10,6 +11,32 @@ steps:
     - '.'
   dir: 'website-3'
 
+# Copy Dockerfile to /workspace.
+- name: 'bash'
+  args:
+    - 'cp'
+    - 'website-3/Dockerfile'
+    - '/workspace/'
+
+# Copy index.html to /workspace, with "version 1" replaced by "version 2".
+- name: 'bash'
+  args:
+    - '-c'
+    - sed 's/version 1/version 2/' website-3/index.html > /workspace/index.html
+
+# Build "version 2" from /workspace.
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-3:2.0'
+    - '-t'
+    - 'gcr.io/nim-onboarding/test-cloud-build/test-image-3:2.0'
+    - '.'
+  dir: '/workspace'
+
 images:
   - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-3:1.0'
   - 'gcr.io/nim-onboarding/test-cloud-build/test-image-3:1.0'
+  - 'us-central1-docker.pkg.dev/nim-onboarding/test-cloud-build/test-image-3:2.0'
+  - 'gcr.io/nim-onboarding/test-cloud-build/test-image-3:2.0'
